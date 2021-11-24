@@ -263,10 +263,10 @@
                                     <action selector="pressButton:" destination="gpW-UU-6qd" eventType="touchUpInside" id="XwT-T3-367"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3w-rS-hgf">
-                                <rect key="frame" x="143" y="99" width="128" height="23"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3w-rS-hgf">
+                                <rect key="frame" x="94" y="99" width="226" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -275,6 +275,8 @@
                         <color key="backgroundColor" systemColor="secondarySystemBackgroundColor"/>
                     </view>
                     <connections>
+                        <outlet property="nextDigit" destination="V3w-rS-hgf" id="D4x-Yf-eaV"/>
+                        <outlet property="statusLabel" destination="jtF-K9-D62" id="vws-Mo-JOl"/>
                         <outletCollection property="buttons" destination="NVX-Xn-s4i" collectionClass="NSMutableArray" id="42l-8G-OFp"/>
                         <outletCollection property="buttons" destination="jue-3H-YL8" collectionClass="NSMutableArray" id="e4v-80-hLc"/>
                         <outletCollection property="buttons" destination="nhh-sw-wwd" collectionClass="NSMutableArray" id="pp1-10-ErS"/>

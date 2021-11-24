@@ -1,6 +1,12 @@
 import Foundation
 
 
+enum StatusGame {
+    case start
+    case win
+}
+
+
 class Game {
     
     
@@ -15,10 +21,28 @@ class Game {
     
     private var countItems: Int
     
+    var nextItem: Item?
+    
+    var status: StatusGame = .start
+    
     init(countItems: Int) {
         self.countItems = countItems
         
         setupGame()
+    }
+    
+    func check(index: Int) {
+        if items[index].title == nextItem?.title{
+            items[index].isFound = true
+            nextItem = items.shuffled().first(where: { (item) -> Bool in
+                item.isFound == false
+            })
+            
+        }
+        
+        if nextItem == nil{
+            status = .win
+        }
     }
     
     private func setupGame(){
@@ -28,5 +52,7 @@ class Game {
             let item = Item(title: String(digits.removeFirst()))
             items.append(item)
         }
+        
+        nextItem = items.shuffled().first
     }
 }
