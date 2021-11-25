@@ -3,4 +3,4 @@
 
 <h3>Главное меню</h4>
 
-![alt text](docs/mainMenu.jpg "Описание будет тут")​
+![alt text](docs/mainMenu.png "Описание будет тут")​
