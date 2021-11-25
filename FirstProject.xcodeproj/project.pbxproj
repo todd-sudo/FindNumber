@@ -34,6 +34,7 @@
 		2BE69A10274E71BA0064C4B7 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		2BE69A12274E7D3F0064C4B7 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		2BE69A14274F81890064C4B7 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		2BE69A16274F88C80064C4B7 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +51,7 @@
 		2BCA3834274BB81B0015B7F8 = {
 			isa = PBXGroup;
 			children = (
+				2BE69A16274F88C80064C4B7 /* README.md */,
 				2BCA383F274BB81C0015B7F8 /* FirstProject */,
 				2BCA383E274BB81C0015B7F8 /* Products */,
 			);
