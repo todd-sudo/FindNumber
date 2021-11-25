@@ -34,9 +34,20 @@ class Game {
     
     var items: [Item] = []
     var nextItem: Item?
+    var isNewRecord = false
+    
     var status: StatusGame = .start {
         didSet{
             if status != .start {
+                if status == .win{
+                    // MARK: Save new record in Users=Defaults
+                    let newRecord = timeForGame - secondsGame
+                    let record = UserDefaults.standard.integer(forKey: KeysUserDefaults.recordGame)
+                    if record == 0 || newRecord < record{
+                        UserDefaults.standard.setValue(newRecord, forKey: KeysUserDefaults.recordGame)
+                        isNewRecord = true
+                    }
+                }
                 stopGame()
             }
         }
@@ -69,6 +80,7 @@ class Game {
         if nextItem == nil{
             status = .win
         }
+        
     }
     
     // MARK: Перезапускает игру
@@ -80,6 +92,7 @@ class Game {
     
     // MARK: Загружает игру.
     private func setupGame() {
+        isNewRecord = false
         var digits = data.shuffled()
         
         items.removeAll()

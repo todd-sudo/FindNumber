@@ -29,8 +29,8 @@ class GameViewController: UIViewController {
         setupScreen()
     }
     
+    // MARK: обработка нажатия на кнопку
     @IBAction func pressButton(_ sender: UIButton) {
-        
         guard let buttonIndex = buttons.firstIndex(of: sender) else {
             return
         }
@@ -86,11 +86,75 @@ class GameViewController: UIViewController {
             statusLabel.text = "Вы выйграли! :)"
             statusLabel.textColor = .green
             newGameButton.isHidden = false
+            
+            if game.isNewRecord {
+                showAlert()
+            } else {
+                showAlertActionSheet()
+            }
         case .lose:
             statusLabel.text = "Вы проиграли! :("
             statusLabel.textColor = .red
             newGameButton.isHidden = false
+            showAlertActionSheet()
         }
+    }
+    
+    // MARK: выводит alert - инфа о новом рекорде если .win
+    private func showAlert() {
+        let alert  = UIAlertController(
+            title: "Поздравляем!",
+            message: "Вы установили новый рекорд",
+            preferredStyle: .alert
+        )
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
+    }
+    
+    // MARK: выводит второй вариант alert, когда пользователь проиграл
+    private func showAlertActionSheet() {
+        let alert = UIAlertController(
+            title: "Что вы хотите сделать?",
+            message: nil,
+            preferredStyle: .actionSheet
+        )
+        let newGameAction = UIAlertAction(title: "Начать новую игру", style: .default) { [weak self] (_) in
+            self?.game.newGame()
+            self?.setupScreen()
+        }
+        
+        let showRecord = UIAlertAction(title: "Посмотреть рекорд", style: .default) { (_) in
+            // TODO: - RECORD VIEW CONTROLLER
+        }
+        
+        let menuAction = UIAlertAction(title: "Перейти в меню", style: .destructive) { [weak self] (_) in
+            self?.navigationController?.popViewController(animated: true)
+        }
+        let canselAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        
+        alert.addAction(newGameAction)
+        alert.addAction(showRecord)
+        alert.addAction(menuAction)
+        alert.addAction(canselAction)
+        
+        // нужен для IPad
+        if let popover = alert.popoverPresentationController {
+            // привязка алерта к элементу на экране
+            popover.sourceView = statusLabel
+            
+            // если sourceView = self.view, то ...
+//            popover.sourceRect = CGRect(
+//                x: self.view.bounds.midX,
+//                y: self.view.bounds.midY,
+//                width: 0,
+//                height: 0
+//            )
+//            // убирает стрелочку
+//            popover.permittedArrowDirections = UIPopoverArrowDirection.init(rawValue: 0)
+        }
+        
+        present(alert, animated: true, completion: nil)
     }
     
 }
