@@ -1,14 +1,14 @@
 import Foundation
 
 
-// Статусы игры
+// MARK: Статусы игры
 enum StatusGame {
     case start
     case win
     case lose
 }
 
-// Модель Игры
+// MARK: Модель Игры
 class Game {
     
     struct Item {
@@ -25,7 +25,7 @@ class Game {
             if secondsGame == 0 {
                 status = .lose
             }
-            // обновляем таймер
+            // MARK: обновляем таймер
             updateTimer(status, secondsGame)
         }
     }
@@ -42,17 +42,17 @@ class Game {
         }
     }
     
-    // Инициализация.
-    // @escaping - нужен для того чтобы вызывать ее после init, в  didSet`е timeForGame
-    init(countItems: Int, time: Int, updateTimer:@escaping (_ status: StatusGame, _ second: Int) -> Void) {
+    // MARK: Инициализация.
+    // MARK: @escaping - нужен для того чтобы вызывать ее после init, в  didSet`е timeForGame
+    init(countItems: Int, updateTimer:@escaping (_ status: StatusGame, _ second: Int) -> Void) {
         self.countItems = countItems
-        self.timeForGame = time
-        self.secondsGame = time
+        self.timeForGame = Settings.shared.currentSettings.timeForGame
+        self.secondsGame = self.timeForGame
         self.updateTimer = updateTimer
         setupGame()
     }
     
-    // Проверяет нажатие на число, если верно, то список перемешивается и запрашивается новое число
+    // MARK: Проверяет нажатие на число, если верно, то список перемешивается и запрашивается новое число
     func check(index: Int) {
         guard status == .start else {return}
         
@@ -71,14 +71,14 @@ class Game {
         }
     }
     
-    // Перезапускает игру
+    // MARK: Перезапускает игру
     func newGame() {
         status = .start
         self.secondsGame = self.timeForGame
         setupGame()
     }
     
-    // Загружает игру.
+    // MARK: Загружает игру.
     private func setupGame() {
         var digits = data.shuffled()
         
@@ -91,23 +91,25 @@ class Game {
         
         nextItem = items.shuffled().first
         
-        // обновляем таймер
+        // MARK: обновляем таймер
         updateTimer(status, secondsGame)
         
-        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (_) in
-            self?.secondsGame -= 1
-        })
+        if Settings.shared.currentSettings.timerState {
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [weak self] (_) in
+                self?.secondsGame -= 1
+            })
+        }
     }
     
-    // Останаваливает игру
-    private func stopGame() {
+    // MARK: Останаваливает игру
+    func stopGame() {
         timer?.invalidate()
     }
 }
 
-// Расширение для типа Int
+// MARK: Расширение для типа Int
 extension Int {
-    // Возвращает форматируемую строку, типа 1:02
+    // MARK: Возвращает форматируемую строку, типа 1:02
     func secondToString() -> String {
         let minutes = self / 60
         let seconds = self % 60

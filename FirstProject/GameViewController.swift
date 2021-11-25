@@ -7,14 +7,21 @@ class GameViewController: UIViewController {
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
-    
     @IBOutlet weak var newGameButton: UIButton!
-    lazy var game = Game(countItems: buttons.count, time: 30) { [weak self] (status, time) in
-        // проверка self, чтобы не писать self?
+    
+    lazy var game = Game(countItems: buttons.count) { [weak self] (status, time) in
+        // MARK: проверка self, чтобы не писать self?
         guard let self = self else {return}
-        
-        self.timerLabel.text = time.secondToString()
+        if Settings.shared.currentSettings.timerState{
+            self.timerLabel.text = time.secondToString()
+        }
         self.updateInfoGame(with: status)
+    }
+    
+    // MARK: при уходе из формы, останавливаем игру
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        game.stopGame()
     }
     
     override func viewDidLoad() {
@@ -31,7 +38,7 @@ class GameViewController: UIViewController {
         updateUI()
     }
     
-    // Обработка кнопки "Новая игра"
+    // MARK: Обработка кнопки "Новая игра"
     @IBAction func newGame(_ sender: UIButton) {
         game.newGame()
         sender.isHidden = true
@@ -68,7 +75,7 @@ class GameViewController: UIViewController {
         updateInfoGame(with: game.status)
     }
     
-    // Проверяет статус игры
+    // MARK: Проверяет статус игры
     private func updateInfoGame(with status:StatusGame) {
         switch status {
         case .start:

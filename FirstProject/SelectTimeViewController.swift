@@ -30,13 +30,11 @@ extension SelectTimeViewController: UITableViewDataSource, UITableViewDelegate{
         return cell
     }
     
+    // MARK: сохраняем настройку и возвращаем юзера на главный экран настроек
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        UserDefaults.standard.setValue(data[indexPath.row], forKey: "timeForGame")
-        
-        UserDefaults.standard.integer(forKey: "timeForGame")
-        UserDefaults.standard.object(forKey: <#T##String#>)
+        Settings.shared.currentSettings.timeForGame = data[indexPath.row]
+        navigationController?.popViewController(animated: true)
     }
     
     
