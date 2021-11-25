@@ -3,4 +3,7 @@
 
 <h3>Главное меню</h4>
 
-<img src="docs/mainMenu.png" width="150" height="300">
+<div style="float:left; width:33%; display=flex">
+    <img src="docs/mainMenu.png" width="180" height="330">
+    <img src="docs/mainMenu.png" width="180" height="330">
+</div>
