@@ -14,4 +14,3 @@
 
 <tr><tr>
 
-<b style="display: center">by ToDD develop</b>
