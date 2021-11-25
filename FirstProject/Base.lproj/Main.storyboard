@@ -217,7 +217,7 @@
                                             <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
-                                            <segue destination="met-OA-BoG" kind="show" id="0sm-gR-Oiz"/>
+                                            <segue destination="met-OA-BoG" kind="presentation" id="0sm-gR-Oiz"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -243,18 +243,39 @@
         <!--Рекорд-->
         <scene sceneID="MMK-MD-fgQ">
             <objects>
-                <viewController id="met-OA-BoG" sceneMemberID="viewController">
+                <viewController id="met-OA-BoG" customClass="RecordViewController" customModule="FirstProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2YD-W6-l8b">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EIn-Sb-QTx">
+                                <rect key="frame" x="20" y="401" width="374" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="374" id="4UX-B6-sNt"/>
+                                    <constraint firstAttribute="height" constant="40" id="6cr-m4-Bby"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="w0I-nK-1xi"/>
                         <color key="backgroundColor" red="0.66274509803921566" green="1" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="EIn-Sb-QTx" firstAttribute="leading" secondItem="w0I-nK-1xi" secondAttribute="leading" constant="20" id="O93-Q1-rMV"/>
+                            <constraint firstItem="w0I-nK-1xi" firstAttribute="trailing" secondItem="EIn-Sb-QTx" secondAttribute="trailing" constant="20" id="Xsq-dL-aeR"/>
+                            <constraint firstItem="w0I-nK-1xi" firstAttribute="bottom" secondItem="EIn-Sb-QTx" secondAttribute="bottom" constant="367" id="gn6-6U-ONR"/>
+                            <constraint firstItem="EIn-Sb-QTx" firstAttribute="top" secondItem="w0I-nK-1xi" secondAttribute="top" constant="401" id="q1X-7X-FP8"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Рекорд" id="ySh-jm-8Rc"/>
+                    <connections>
+                        <outlet property="recordLabel" destination="EIn-Sb-QTx" id="UWf-Bu-sJf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E2Q-gc-SNS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-701" y="-1120"/>
+            <point key="canvasLocation" x="-701.44927536231887" y="-1120.3125"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="EDo-Vq-jSv">
@@ -584,11 +605,12 @@
                         <outletCollection property="buttons" destination="NVX-Xn-s4i" collectionClass="NSMutableArray" id="42l-8G-OFp"/>
                         <outletCollection property="buttons" destination="nhh-sw-wwd" collectionClass="NSMutableArray" id="pp1-10-ErS"/>
                         <outletCollection property="buttons" destination="jue-3H-YL8" collectionClass="NSMutableArray" id="e4v-80-hLc"/>
+                        <segue destination="met-OA-BoG" kind="presentation" identifier="recordVC" id="g7e-bC-DWM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mY4-WX-UZm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="14" y="-384"/>
+            <point key="canvasLocation" x="525" y="-926"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="qHj-Qh-mbU">
@@ -609,6 +631,9 @@
             <point key="canvasLocation" x="-701" y="354"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="g7e-bC-DWM"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
